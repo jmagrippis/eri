@@ -1,5 +1,5 @@
 {
-  "name": "an-app-with-next",
+  "name": "tailwind-with-next",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,8 +15,11 @@
   },
   "devDependencies": {
     "@types/react": "17.0.11",
+    "autoprefixer": "^10.2.6",
     "eslint": "7.29.0",
     "eslint-config-next": "11.0.0",
+    "postcss": "^8.2.13",
+    "tailwindcss": "^2.2.4",
     "typescript": "4.3.4"
   },
   "volta": {
