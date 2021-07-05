@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Button } from './Button'
+import { Footer } from './Footer'
+import { Hero } from './Hero'
 
 export function Home() {
   return (
@@ -14,24 +14,15 @@ export function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className="text-primary-900 text-5xl mb-6">An app with Next.js!</h1>
-
-      <main>
-        <Button>DM me now!</Button>
+      <main className="w-full">
+        <Hero />
+        <h2 className="text-center py-12 text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl md:text-5xl">
+          <span>My superpower?</span>{' '}
+          <span className="text-primary-400">Telling stories</span>
+        </h2>
       </main>
 
-      <footer className="bg-primary-50 w-full text-center">
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <Footer />
     </div>
   )
 }

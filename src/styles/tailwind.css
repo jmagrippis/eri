@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-.button {
-  @apply bg-primary-400 text-white border-2 border-primary-400 px-8 py-3 flex justify-center font-semibold md:text-lg md:py-4 md:px-10 rounded-lg relative shadow transition hover:bg-primary-500 hover:shadow-md mb-4 active:top-1;
+@layer components {
+  .button {
+    @apply border-2 px-8 py-3 flex justify-center font-semibold md:text-lg md:py-4 md:px-10 rounded-lg relative shadow transition hover:shadow-md mb-4 active:top-1;
+  }
+}
+
+.button-primary {
+  @apply button;
+  @apply bg-primary-400 text-white border-primary-400 hover:bg-primary-500;
+}
+
+.button-outline {
+  @apply button;
+  @apply bg-white text-primary-400 border-white hover:bg-gray-50 hover:text-primary-500;
 }
