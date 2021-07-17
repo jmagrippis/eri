@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { Footer } from './Footer'
 import { Hero } from './Hero'
+import { Superpowers } from './Superpowers'
 
 export function Home() {
   return (
@@ -39,10 +40,7 @@ export function Home() {
 
       <main className="w-full">
         <Hero />
-        <h2 className="text-center py-12 text-3xl tracking-tight font-semibold text-gray-900 sm:text-4xl md:text-5xl">
-          <span>My superpower?</span>{' '}
-          <span className="text-primary-400">Telling stories</span>
-        </h2>
+        <Superpowers />
       </main>
 
       <Footer />
