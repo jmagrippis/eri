@@ -16,10 +16,10 @@ export const Superpowers = () => {
     useTypedSuperpower(superpowers)
 
   return (
-    <h2 className="flex flex-col lg:block text-center py-12 text-5xl tracking-tight font-semibold text-gray-900 md:text-6xl">
+    <h2 className="flex flex-col lg:block text-center pt-12 text-5xl tracking-tight font-semibold text-gray-900 md:text-6xl">
       <span className="mb-2 lg:mb-0">My superpower?</span>{' '}
       <span
-        className={cn('text-primary-400', {
+        className={cn('text-primary-400 pt-4 pb-12 min-h-[10rem]', {
           ['end-cursor']: phase !== TypePhase.Deleting,
           ['blinking']: phase === TypePhase.Pausing,
         })}
