@@ -1,17 +1,11 @@
 import { TypePhase, useTypedSuperpower } from './useTypedSuperpower'
 import cn from 'classnames'
 
-const superpowers = [
-  'Telling stories',
-  'Writing awesome bios',
-  'Social storytelling',
-  'Media coaching',
-  'Link building',
-  'Super shuffling',
-  'Lindy Hop dancing',
-]
+type Props = {
+  superpowers: string[]
+}
 
-export const Superpowers = () => {
+export const Superpowers = ({ superpowers }: Props) => {
   const { typedSuperpower, selectedSuperpower, phase } =
     useTypedSuperpower(superpowers)
 
