@@ -1,6 +1,6 @@
 import { Client } from '@notionhq/client'
-import { TitlePropertyValue } from '@notionhq/client/build/src/api-types'
 
+import { TitlePropertyValue } from './fetchSuperpowers'
 import { Superpower, SuperpowersRepo } from './SuperpowersRepo'
 
 const fallbackSuperpowers = [
