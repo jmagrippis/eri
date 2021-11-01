@@ -13,6 +13,9 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
     },
+    fontFamily: {
+      sans: ['Inter', 'sans-serif'],
+    },
     extend: {},
   },
   variants: {

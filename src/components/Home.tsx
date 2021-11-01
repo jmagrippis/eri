@@ -39,6 +39,10 @@ export const Home = ({ superpowers }: HomeProps) => (
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#22d3ee" />
       <meta name="msapplication-TileColor" content="#22d3ee" />
       <meta name="theme-color" content="#22d3ee" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+        rel="stylesheet"
+      ></link>
     </Head>
 
     <main className="w-full">
