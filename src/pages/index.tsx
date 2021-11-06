@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
 
-import { HomeProps } from 'components/Home'
+import type { HomeProps } from 'components/Home/Home'
 import { superpowersRepo } from 'repos/superpowers/NotionRepo'
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
@@ -9,4 +9,4 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   return { props: { superpowers }, revalidate: 120 }
 }
 
-export { Home as default } from 'components/Home'
+export { Home as default } from 'components/Home/Home'

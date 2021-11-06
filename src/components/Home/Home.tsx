@@ -1,5 +1,7 @@
 import Head from 'next/head'
-import { Footer } from './Footer'
+
+import { Header } from 'components/Header'
+import { Footer } from 'components/Footer'
 import { Hero } from './Hero'
 import { Superpowers } from './Superpowers'
 
@@ -8,7 +10,7 @@ export type HomeProps = {
 }
 
 export const Home = ({ superpowers }: HomeProps) => (
-  <div className="flex flex-col justify-between items-center h-screen">
+  <>
     <Head>
       <title>Eri Panselina | Journalist - PR expert - Link builder</title>
       <meta
@@ -39,17 +41,21 @@ export const Home = ({ superpowers }: HomeProps) => (
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#22d3ee" />
       <meta name="msapplication-TileColor" content="#22d3ee" />
       <meta name="theme-color" content="#22d3ee" />
+      {/* Google Fonts */}
       <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
         rel="stylesheet"
       ></link>
     </Head>
+    <div className="flex flex-col justify-between items-center h-screen">
+      <Header />
 
-    <main className="w-full">
-      <Hero />
-      <Superpowers superpowers={superpowers} />
-    </main>
+      <main className="w-full">
+        <Hero />
+        <Superpowers superpowers={superpowers} />
+      </main>
 
-    <Footer />
-  </div>
+      <Footer />
+    </div>
+  </>
 )
