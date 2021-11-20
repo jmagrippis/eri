@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export enum TypePhase {
   Typing,
@@ -22,10 +22,16 @@ export const useTypedSuperpower = (
   typedSuperpower: string
   selectedSuperpower: string
   phase: TypePhase
+  resume: () => void
 } => {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [phase, setPhase] = useState(TypePhase.Typing)
   const [typedSuperpower, setTypedSuperpower] = useState('')
+  const resume = useCallback(() => {
+    if (phase !== TypePhase.Pausing) return
+    setPhase(TypePhase.Deleting)
+  }, [phase])
+
   useEffect(() => {
     switch (phase) {
       case TypePhase.Typing: {
@@ -79,6 +85,7 @@ export const useTypedSuperpower = (
   return {
     typedSuperpower,
     phase,
+    resume,
     selectedSuperpower: superpowers[selectedIndex],
   }
 }
