@@ -9,6 +9,7 @@ module.exports = {
       primary: colors.cyan,
       secondary: colors.emerald,
       gray: colors.coolGray,
+      alert: colors.rose,
       white: colors.white,
       transparent: 'transparent',
       current: 'currentColor',
