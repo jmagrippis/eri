@@ -7,6 +7,7 @@ const customJestConfig = {
   clearMocks: true,
   moduleDirectories: ['node_modules', 'src'],
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+  testRegex: '(/__tests__/.*|(\\.|/)test)\\.[jt]sx?$',
 }
 
 module.exports = createJestConfig(customJestConfig)
