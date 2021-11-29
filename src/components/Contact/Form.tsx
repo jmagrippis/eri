@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { FormEventHandler, useRef } from 'react'
 import axios from 'axios'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { ExclamationCircleIcon } from '@heroicons/react/solid'
@@ -7,6 +7,7 @@ import {
   Notification,
   NotificationProps,
 } from 'components/Notification/Notification'
+import { useNotification } from './useNotification'
 
 const NOTIFICATION: {
   [key: string]: Pick<NotificationProps, 'message' | 'icon'>
@@ -33,42 +34,28 @@ const NOTIFICATION: {
 
 export const Form = () => {
   const formRef = useRef<HTMLFormElement>(null)
-  const [notification, setNotification] = useState<Pick<
-    NotificationProps,
-    'message' | 'icon'
-  > | null>(null)
+  const { notification, setNotification } = useNotification()
 
-  useEffect(() => {
-    if (notification) {
-      const timeout = setTimeout(() => {
-        setNotification(null)
-      }, 10_000)
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
+    event.preventDefault()
+    const form = formRef.current
+    if (!form) return
 
-      return () => clearTimeout(timeout)
+    try {
+      await axios.post('/api/contact', Object.fromEntries(new FormData(form)))
+      setNotification(NOTIFICATION.SUCCESS)
+      form.reset()
+    } catch {
+      setNotification(NOTIFICATION.ERROR)
     }
-  }, [notification])
+  }
 
   return (
     <>
       <form
         ref={formRef}
         className="grid grid-cols-1 gap-y-6"
-        onSubmit={async (event) => {
-          event.preventDefault()
-          const form = formRef.current
-          if (!form) return
-
-          try {
-            await axios.post(
-              '/api/contact',
-              Object.fromEntries(new FormData(form))
-            )
-            setNotification(NOTIFICATION.SUCCESS)
-            form.reset()
-          } catch {
-            setNotification(NOTIFICATION.ERROR)
-          }
-        }}
+        onSubmit={handleSubmit}
       >
         <div>
           <label htmlFor="name" className="sr-only">
