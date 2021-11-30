@@ -5,10 +5,6 @@ import type { AppProps } from 'next/app'
 import Layout from 'components/Layout'
 import { NextPage } from 'next'
 
-import('../mocks').then(({ setupMocks }) => {
-  setupMocks()
-})
-
 type NextPageWithMeta = NextPage & {
   title?: string
   description?: string
