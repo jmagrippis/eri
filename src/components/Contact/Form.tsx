@@ -1,5 +1,5 @@
 import { FormEventHandler, useRef } from 'react'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { ExclamationCircleIcon } from '@heroicons/react/solid'
 
@@ -21,11 +21,20 @@ const NOTIFICATION: {
       />
     ),
   },
-  ERROR: {
+  SERVER_ERROR: {
     message: 'Something went wrong... Try again?',
     icon: (
       <ExclamationCircleIcon
-        className="h-6 w-6 text-alert-600"
+        className="h-6 w-6 text-alert-400"
+        aria-hidden="true"
+      />
+    ),
+  },
+  VALIDATION_ERROR: {
+    message: 'Your message looks a bit short 🤔',
+    icon: (
+      <ExclamationCircleIcon
+        className="h-6 w-6 text-primary-400"
         aria-hidden="true"
       />
     ),
@@ -45,8 +54,12 @@ export const Form = () => {
       await axios.post('/api/contact', Object.fromEntries(new FormData(form)))
       setNotification(NOTIFICATION.SUCCESS)
       form.reset()
-    } catch {
-      setNotification(NOTIFICATION.ERROR)
+    } catch (error) {
+      if ((error as { response?: AxiosResponse }).response?.status === 400) {
+        setNotification(NOTIFICATION.VALIDATION_ERROR)
+      } else {
+        setNotification(NOTIFICATION.SERVER_ERROR)
+      }
     }
   }
 
