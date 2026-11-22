@@ -23,7 +23,5 @@ test('the home page is rendered with all the superpowers, in order', async ({
   )?.[1]
   expect(nextData).toBeDefined()
 
-  expect(JSON.parse(nextData!).props.pageProps.superpowers).toEqual(
-    superpowers
-  )
+  expect(JSON.parse(nextData!).props.pageProps.superpowers).toEqual(superpowers)
 })

@@ -41,12 +41,7 @@ export const Hero = () => (
       </div>
     </div>
     <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-2/5 xl:w-1/2 lg:h-full">
-      <Image
-        src="/hero.jpg"
-        alt="Hard at work"
-        layout="fill"
-        objectFit="cover"
-      />
+      <Image src="/hero.jpg" alt="Hard at work" fill className="object-cover" />
     </div>
   </section>
 )

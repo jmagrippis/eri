@@ -1,4 +1,4 @@
-import { rest } from 'msw'
+import { http, HttpResponse } from 'msw'
 
 import emailProvider from 'providers/email/InMemoryProvider'
 
@@ -9,19 +9,24 @@ type ContactPostBody = {
 }
 
 export const contactHandlers = [
-  rest.post<ContactPostBody>('/api/contact', (req, res, ctx) => {
-    if (req.body.email.includes('error')) {
-      return res(
-        ctx.status(500),
-        ctx.json({ error: '🔥 The server is on fire 😨' })
+  http.post<never, ContactPostBody>('/api/contact', async ({ request }) => {
+    const body = await request.json()
+
+    if (body.email.includes('error')) {
+      return HttpResponse.json(
+        { error: '🔥 The server is on fire 😨' },
+        { status: 500 }
       )
     }
-    if (req.body.message.length < 4) {
-      return res(ctx.status(400), ctx.json({ error: 'Too laconic buddy 🧐' }))
+    if (body.message.length < 4) {
+      return HttpResponse.json(
+        { error: 'Too laconic buddy 🧐' },
+        { status: 400 }
+      )
     }
 
-    emailProvider.send(req.body)
+    emailProvider.send(body)
 
-    return res(ctx.status(200))
+    return new HttpResponse(null, { status: 200 })
   }),
 ]

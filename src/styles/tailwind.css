@@ -1,12 +1,98 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss' source('..');
 
-@layer components {
-  .button {
-    @apply border-2 px-8 py-3 flex justify-center font-semibold md:text-lg md:py-4 md:px-10 rounded-lg relative shadow transition hover:shadow-md mb-4 active:top-1;
+@theme {
+  --color-*: initial;
+  --color-white: #fff;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* primary: Tailwind v2 cyan */
+  --color-primary-50: #ecfeff;
+  --color-primary-100: #cffafe;
+  --color-primary-200: #a5f3fc;
+  --color-primary-300: #67e8f9;
+  --color-primary-400: #22d3ee;
+  --color-primary-500: #06b6d4;
+  --color-primary-600: #0891b2;
+  --color-primary-700: #0e7490;
+  --color-primary-800: #155e75;
+  --color-primary-900: #164e63;
+
+  /* secondary: Tailwind v2 emerald */
+  --color-secondary-50: #ecfdf5;
+  --color-secondary-100: #d1fae5;
+  --color-secondary-200: #a7f3d0;
+  --color-secondary-300: #6ee7b7;
+  --color-secondary-400: #34d399;
+  --color-secondary-500: #10b981;
+  --color-secondary-600: #059669;
+  --color-secondary-700: #047857;
+  --color-secondary-800: #065f46;
+  --color-secondary-900: #064e3b;
+
+  /* gray: Tailwind v2 coolGray */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* alert: Tailwind v2 rose */
+  --color-alert-50: #fff1f2;
+  --color-alert-100: #ffe4e6;
+  --color-alert-200: #fecdd3;
+  --color-alert-300: #fda4af;
+  --color-alert-400: #fb7185;
+  --color-alert-500: #f43f5e;
+  --color-alert-600: #e11d48;
+  --color-alert-700: #be123c;
+  --color-alert-800: #9f1239;
+  --color-alert-900: #881337;
+
+  --font-*: initial;
+  --font-sans: Inter, sans-serif;
+
+  /* Tailwind v2 defaults that later versions changed */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px 0 rgb(0 0 0 / 0.06);
+  --shadow-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+  --default-ring-color: rgb(59 130 246 / 0.5);
+}
+
+/* Tailwind v2 preflight defaults that v4 changed */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
   }
 
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-gray-400);
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@utility button {
+  @apply border-2 px-8 py-3 flex justify-center font-semibold md:text-lg md:py-4 md:px-10 rounded-lg relative shadow-sm transition hover:shadow-md mb-4 active:top-1;
+}
+
+@layer components {
   .end-cursor:after {
     content: '|';
     @apply text-secondary-300;

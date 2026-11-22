@@ -31,7 +31,9 @@ test.describe('contact page', () => {
     await page.getByRole('button', { name: /submit/i }).click()
 
     await expect(
-      page.getByRole('alert', { name: /Something went wrong\.\.\. Try again?/i })
+      page.getByRole('alert', {
+        name: /Something went wrong\.\.\. Try again?/i,
+      })
     ).toBeVisible()
   })
 })
