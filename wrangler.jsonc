@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "eri",
+  "account_id": "e7c05b0a3ba39cddfc19088c6f685371",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-11-19",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "images": {
+    // next/image optimisation, see https://opennext.js.org/cloudflare/howtos/image
+    "binding": "IMAGES",
+  },
+  "routes": [{ "pattern": "eri.magrippis.com", "custom_domain": true }],
+  "workers_dev": false,
+  // keep version and preview URLs on workers.dev
+  "preview_urls": true,
+  "upload_source_maps": true,
+  "observability": {
+    "enabled": true,
+  },
+}

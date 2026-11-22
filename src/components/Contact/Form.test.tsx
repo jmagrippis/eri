@@ -9,17 +9,18 @@ beforeEach(() => {
 })
 
 it('allows me to submit a message', async () => {
+  const user = userEvent.setup()
   render(<Form />)
 
   const name = 'Elena Example'
   const email = 'elena@example.com'
   const message = 'We should work together!'
 
-  userEvent.type(screen.getByLabelText(/name/i), name)
-  userEvent.type(screen.getByLabelText(/email/i), email)
-  userEvent.type(screen.getByLabelText(/message/i), message)
+  await user.type(screen.getByLabelText(/name/i), name)
+  await user.type(screen.getByLabelText(/email/i), email)
+  await user.type(screen.getByLabelText(/message/i), message)
 
-  userEvent.click(screen.getByRole('button', { name: /submit/i }))
+  await user.click(screen.getByRole('button', { name: /submit/i }))
 
   expect(
     await screen.findByRole('alert', { name: /Eri got your message, thanks!/i })
@@ -35,14 +36,15 @@ it('allows me to submit a message', async () => {
 })
 
 it('does not send the email and informs me something went wrong', async () => {
+  const user = userEvent.setup()
   render(<Form />)
 
   // an email including "error" will result in a 500 response
-  userEvent.type(screen.getByLabelText(/email/i), 'error@example.com')
-  userEvent.type(screen.getByLabelText(/name/i), 'Elena Example')
-  userEvent.type(screen.getByLabelText(/message/i), 'We should work together!')
+  await user.type(screen.getByLabelText(/email/i), 'error@example.com')
+  await user.type(screen.getByLabelText(/name/i), 'Elena Example')
+  await user.type(screen.getByLabelText(/message/i), 'We should work together!')
 
-  userEvent.click(screen.getByRole('button', { name: /submit/i }))
+  await user.click(screen.getByRole('button', { name: /submit/i }))
 
   expect(
     await screen.findByRole('alert', {
@@ -52,14 +54,15 @@ it('does not send the email and informs me something went wrong', async () => {
 })
 
 it('informs me something went wrong', async () => {
+  const user = userEvent.setup()
   render(<Form />)
 
   // a short message will result in a 400 response
-  userEvent.type(screen.getByLabelText(/message/i), 'Yo!')
-  userEvent.type(screen.getByLabelText(/name/i), 'Elena Example')
-  userEvent.type(screen.getByLabelText(/email/i), 'elena@example.com')
+  await user.type(screen.getByLabelText(/message/i), 'Yo!')
+  await user.type(screen.getByLabelText(/name/i), 'Elena Example')
+  await user.type(screen.getByLabelText(/email/i), 'elena@example.com')
 
-  userEvent.click(screen.getByRole('button', { name: /submit/i }))
+  await user.click(screen.getByRole('button', { name: /submit/i }))
 
   expect(
     await screen.findByRole('alert', {

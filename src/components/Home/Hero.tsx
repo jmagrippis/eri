@@ -44,8 +44,9 @@ export const Hero = () => (
       <Image
         src="/hero.jpg"
         alt="Hard at work"
-        layout="fill"
-        objectFit="cover"
+        fill
+        sizes="(min-width: 1280px) 50vw, 40vw"
+        className="object-cover"
       />
     </div>
   </section>

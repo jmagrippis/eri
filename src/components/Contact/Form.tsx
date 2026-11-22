@@ -1,7 +1,7 @@
 import { FormEventHandler, useRef } from 'react'
 import axios, { AxiosResponse } from 'axios'
-import { CheckCircleIcon } from '@heroicons/react/outline'
-import { ExclamationCircleIcon } from '@heroicons/react/solid'
+import { CheckCircleIcon } from '@heroicons/react/24/outline'
+import { ExclamationCircleIcon } from '@heroicons/react/20/solid'
 
 import {
   Notification,
@@ -79,7 +79,7 @@ export const Form = () => {
             name="name"
             id="name"
             autoComplete="name"
-            className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500 border-gray-300 rounded-md"
+            className="block w-full shadow-xs py-3 px-4 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500 border-gray-300 rounded-md"
             placeholder="Your name"
             required
           />
@@ -93,7 +93,7 @@ export const Form = () => {
             name="email"
             id="email"
             autoComplete="email"
-            className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500 border-gray-300 rounded-md"
+            className="block w-full shadow-xs py-3 px-4 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500 border-gray-300 rounded-md"
             placeholder="Your email"
             required
           />
@@ -106,7 +106,7 @@ export const Form = () => {
             id="message"
             name="message"
             rows={4}
-            className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500 border border-gray-300 rounded-md"
+            className="block w-full shadow-xs py-3 px-4 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500 border border-gray-300 rounded-md"
             placeholder="Message"
             defaultValue=""
             required

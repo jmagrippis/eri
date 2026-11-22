@@ -35,18 +35,17 @@ export const useTypedSuperpower = (
   useEffect(() => {
     switch (phase) {
       case TypePhase.Typing: {
-        const nextTypedSuperPower = superpowers[selectedIndex].slice(
+        const superpower = superpowers[selectedIndex]
+        const nextTypedSuperPower = superpower.slice(
           0,
           typedSuperpower.length + 1
         )
 
-        if (nextTypedSuperPower === typedSuperpower) {
-          setPhase(TypePhase.Pausing)
-          return
-        }
-
         const timeout = setTimeout(() => {
           setTypedSuperpower(nextTypedSuperPower)
+          if (nextTypedSuperPower === superpower) {
+            setPhase(TypePhase.Pausing)
+          }
         }, getRandomTypingInterval())
 
         return () => clearTimeout(timeout)
