@@ -25,10 +25,9 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test
-      - run: npm run build
       - run: npx playwright install --with-deps chromium
       # Playwright starts `npm run preview`: the app on the local Workers runtime
-      - run: npm run test:e2e -- --trace off
+      - run: npm run test:e2e
       - uses: actions/upload-artifact@v7
         if: failure()
         with:

@@ -10,7 +10,6 @@ const eslintConfig = defineConfig([
     'next-env.d.ts',
     '.open-next/**',
     '.wrangler/**',
-    'cloudflare-env.d.ts',
     'public/mockServiceWorker.js',
     'playwright-report/**',
     'test-results/**',

@@ -3,7 +3,6 @@ import { defineConfig, devices } from '@playwright/test'
 const PORT = 8787
 const baseURL = `http://localhost:${PORT}`
 
-// the viewports the Cypress suite covered: Cypress' iphone-x, ipad-2 and macbook-13 presets
 const viewports = {
   'iphone-x': { width: 375, height: 812 },
   'ipad-2': { width: 768, height: 1024 },
@@ -13,10 +12,11 @@ const viewports = {
 export default defineConfig({
   testDir: './e2e',
   forbidOnly: !!process.env.CI,
-  retries: 2,
-  reporter: process.env.CI ? 'github' : 'list',
+  retries: process.env.CI ? 2 : 0,
+  reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : 'list',
   use: {
     baseURL,
+    trace: 'on-first-retry',
     launchOptions: {
       // only for machines with a preinstalled Chromium Playwright can't find on its own
       executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,
@@ -25,6 +25,8 @@ export default defineConfig({
   projects: Object.entries(viewports).map(([name, viewport]) => ({
     name,
     use: { ...devices['Desktop Chrome'], viewport },
+    // the home page check only makes a request: one viewport is enough
+    testIgnore: name === 'macbook-13' ? [] : /home\.spec\.ts/,
   })),
   webServer: {
     // the local Workers runtime (workerd), not `next dev`
